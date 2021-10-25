@@ -1,20 +1,23 @@
-import React from 'react';
+import React, {FC} from 'react';
 import type {Node} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {StackNavigationProp} from '@react-navigation/stack';
+
 import {Header} from '../components/Header';
 import GoBack from '../components/icons/GoBack';
 import Heart from '../components/icons/Heart';
 import Rubbish from '../components/icons/Rubbish';
-import {useDispatch, useSelector} from 'react-redux';
+import HeartRed from '../components/icons/HeartRed';
 import {
   addFavoritePicture,
   removeFavoritePicture,
-} from '../store/reducers/picturesReducer';
-import HeartRed from '../components/icons/HeartRed';
+} from '../store/actions/pictureAction';
+import {useTypedSelector} from '../hooks/useTypedSelector';
 
-export const Picture = ({route, navigation}) => {
+export const Picture: FC = ({route, navigation}) => {
   const dispatch = useDispatch();
-  const favorite = useSelector(store => store.favorite);
+  const favorite = useTypedSelector(store => store.favorite);
 
   const {url, author, id, pic} = route.params;
 

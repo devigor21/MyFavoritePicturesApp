@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import type {Node} from 'react';
 import {
   Image,
@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import {Header} from '../components/Header';
 import {resizePicture} from '../utils/resizePicture';
-import {useSelector} from 'react-redux';
 import HeartRed from '../components/icons/HeartRed';
+import {useTypedSelector} from '../hooks/useTypedSelector';
 
-export const FavoritePics = ({navigation}) => {
-  const favorite = useSelector(store => store.favorite);
+export const FavoritePics: FC = ({navigation}) => {
+  const favorite = useTypedSelector(store => store.favorite);
 
   return (
     <SafeAreaView>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import type {Node} from 'react';
 import {
   Image,
@@ -8,17 +8,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useDispatch} from 'react-redux';
+
 import {Header} from '../components/Header';
 import {resizePicture} from '../utils/resizePicture';
-import {useDispatch, useSelector} from 'react-redux';
 import HeartRed from '../components/icons/HeartRed';
-import {setPictures} from '../store/reducers/picturesReducer';
+import {setPictures} from '../store/actions/pictureAction';
+import {useTypedSelector} from '../hooks/useTypedSelector';
 
-export const Main = ({navigation}) => {
+export const Main: FC = ({navigation}) => {
   const dispatch = useDispatch();
 
-  const data = useSelector(store => store.pictures);
-  const favorite = useSelector(store => store.favorite);
+  const data = useTypedSelector(store => store.pictures);
+  const favorite = useTypedSelector(store => store.favorite);
 
   useEffect(() => {
     dispatch(setPictures());

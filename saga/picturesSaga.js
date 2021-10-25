@@ -1,5 +1,7 @@
 import {put, takeEvery, call} from 'redux-saga/effects';
-import {SET_PICTURES, fetchPictures} from '../store/reducers/picturesReducer';
+
+import {fetchPictures} from '../store/actions/pictureAction';
+import {PictureActionTypes} from '../models/Picture';
 
 const BASE_URL = 'https://picsum.photos';
 
@@ -16,5 +18,5 @@ function* fetchPicsWorker() {
 }
 
 export function* picturesWatcher() {
-  yield takeEvery(SET_PICTURES, fetchPicsWorker);
+  yield takeEvery(PictureActionTypes.SET_PICTURES, fetchPicsWorker);
 }
